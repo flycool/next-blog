@@ -1,5 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-import type { Config } from "tailwindcss";
+// import type { Config } from "tailwindcss";
 
 module.exports = {
   content: [
@@ -15,4 +15,4 @@ module.exports = {
     },
   },
   plugins: [],
-} satisfies Config;
+};

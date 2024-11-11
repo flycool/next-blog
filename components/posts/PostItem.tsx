@@ -1,5 +1,5 @@
 import Link from "next/link";
-import classes from "./post-item.module.css";
+// import classes from "./post-item.module.css";
 import Image from "next/image";
 import { Post } from "contentlayer/generated";
 
@@ -12,21 +12,11 @@ export default function PostItem(post: Post) {
   const linkPath = `/posts/${slug}`;
 
   return (
-    <li className={classes.post}>
+    <li className="mb-3">
       <Link href={linkPath}>
-        {/* <div className={classes.image}>
-          <Image
-            src={imagePath}
-            alt={title}
-            width={300}
-            height={200}
-            layout="responsive"
-          />
-        </div> */}
-        <div className={classes.content}>
-          <h3>{title}</h3>
-          <time>{date}</time>
-          {/* <p>{excerpt}</p> */}
+        <div className="border border-gray-500 rounded-md shadow-sm px-4 py-1">
+          <h3 className="text-xl">{title}</h3>
+          <time className="text-sm text-gray-500">{date}</time>
         </div>
       </Link>
     </li>

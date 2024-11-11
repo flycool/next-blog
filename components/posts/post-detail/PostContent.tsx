@@ -1,5 +1,5 @@
 import PostHeader from "./PostHeader";
-import classes from "./post-content.module.css";
+// import classes from "./post-content.module.css";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -51,28 +51,28 @@ export default function PostContent(props) {
     p(paragraph) {
       const { node } = paragraph;
 
-      if (node.children[0].tagName === "img") {
-        // console.log(node.children[0]);
-        const imageEl = node.children[0];
-        const property = imageEl.properties;
+      // if (node.children[0].tagName === "img") {
+      //   // console.log(node.children[0]);
+      //   const imageEl = node.children[0];
+      //   const property = imageEl.properties;
 
-        return (
-          <div className={classes.image}>
-            <Image
-              src={`/images/posts/${post.slug}/${property.src}`}
-              alt={property.alt}
-              width={600}
-              height={300}
-            ></Image>
-          </div>
-        );
-      }
+      //   return (
+      //     <div >
+      //       <Image
+      //         src={`/images/posts/${post.slug}/${property.src}`}
+      //         alt={property.alt}
+      //         width={600}
+      //         height={300}
+      //       ></Image>
+      //     </div>
+      //   );
+      // }
       return <p>{paragraph.children}</p>;
     },
   };
 
   return (
-    <article className={classes.content}>
+    <article>
       <PostHeader title={post.title} image={imagePath}></PostHeader>
 
       <Markdown components={customRenderers}>{post.content}</Markdown>

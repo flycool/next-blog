@@ -1,22 +1,17 @@
 import Link from "next/link";
 import Logo from "./logo";
-import classes from "./main-navigation.module.css";
 
 export default function MainNavigation() {
   return (
-    <header className={classes.header}>
+    <header className="flex mb-6 items-center">
       <Link href="/">
         <Logo></Logo>
       </Link>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/posts">Posts</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
+      <nav className="flex mx-6">
+        <Link href="/posts" className="mr-3">
+          Posts
+        </Link>
+        <Link href="/contact">Contact</Link>
       </nav>
     </header>
   );
