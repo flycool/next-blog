@@ -23,7 +23,7 @@ export default function ContactForm() {
   const [enterEmail, setEnterEmail] = useState("");
   const [enterName, setEnterName] = useState("");
   const [enterMessage, setEnterMessage] = useState("");
-  const [requestStatus, setRequestStatus] = useState();
+  const [requestStatus, setRequestStatus] = useState("");
   const [requestError, setRequestError] = useState();
 
   useEffect(() => {
@@ -107,7 +107,7 @@ export default function ContactForm() {
           <label htmlFor="message">Your Messagee</label>
           <textarea
             id="message"
-            row="5"
+            rows={5}
             value={enterMessage}
             onChange={(event) => setEnterMessage(event.target.value)}
           ></textarea>
