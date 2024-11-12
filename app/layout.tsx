@@ -1,6 +1,8 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 // import localFont from "next/font/local";
 import MainNavigation from "../components/layout/MainNavigation";
+import SectionContainer from "components/SectionContainer";
+import Header from "components/Header";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -21,10 +23,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='m-6 bg-amber-100'>
-        <MainNavigation></MainNavigation>
-        {children}
-        <div id="notifications"></div>
+      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+        <SectionContainer>
+          <Header/>
+          {/* <MainNavigation></MainNavigation> */}
+          <main className="mb-auto">{children}</main>
+          <div id="notifications"></div>
+        </SectionContainer>
       </body>
     </html>
   );
