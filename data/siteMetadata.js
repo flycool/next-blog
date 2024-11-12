@@ -6,7 +6,7 @@ const siteMetadata = {
   theme: "system",
   locale: "en-US",
   stickyNav: false,
-  description: 'latest posts'
+  description: ''
 };
 
 module.exports = siteMetadata;
