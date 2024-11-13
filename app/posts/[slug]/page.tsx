@@ -6,7 +6,7 @@ import { MDXLayoutRenderer } from "pliny/mdx-components";
 import { components } from "@/components/MDXComponents";
 import PostLayout from "@/layouts/PostLayout";
 import { notFound } from "next/navigation";
-import { coreContent } from "pliny/utils/contentlayer";
+import { coreContent, sortPosts } from "pliny/utils/contentlayer";
 
 const defaultLayout = "PostLayout";
 const layouts = {
@@ -21,13 +21,15 @@ const layouts = {
 
 export default async function PostContentPage({ params }) {
   const { slug } = await params;
-  const postIndex = allPosts.findIndex((p) => p.url === slug);
+  const sortedPosts = sortPosts(allPosts);
+  const postIndex = sortedPosts.findIndex((p) => p.url === slug);
   if (postIndex === -1) return notFound();
 
-  const post = allPosts.find((post) => post.url === slug);
+  const post = sortedPosts.find((post) => post.url === slug);
 
-  const prev = allPosts[postIndex + 1];
-  const next = allPosts[postIndex - 1];
+  const prev = postIndex - 1 >= 0 ? sortedPosts[postIndex - 1] : null;
+  const next =
+    postIndex + 1 <= sortedPosts.length - 1 ? sortedPosts[postIndex + 1] : null;
 
   const mainContent = coreContent(post);
   const Layout = layouts[post.layout || defaultLayout];
