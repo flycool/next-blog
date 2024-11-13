@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import tagData from "app/tag-data.json";
 import CustomLink from "@/components/Link";
 import { Post } from "contentlayer/generated";
+import { slug } from "github-slugger";
 
 interface PaginationProps {
   totalPages: number;
@@ -107,8 +108,8 @@ export default function ListLayoutWithTags({
                 {sortedTags.map((t) => {
                   return (
                     <li key={t} className="my-3">
-                      {decodeURI(pathname.split("/tags/")[1]) === t ? (
-                        <h3>{`${t} (${tagCounts[t]})`}</h3>
+                      {decodeURI(pathname.split("/tags/")[1]) === slug(t) ? (
+                        <h3 className="inline px-3 py-2 text-sm font-bold uppercase text-primary-500">{`${t} (${tagCounts[t]})`}</h3>
                       ) : (
                         <CustomLink
                           href={`/tags/${t}`}

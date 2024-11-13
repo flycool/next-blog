@@ -1,4 +1,4 @@
-import 'styles/prism.css'
+import "styles/prism.css";
 
 import { allPosts, Post } from "contentlayer/generated";
 import { getMDXComponent } from "next-contentlayer2/hooks";
@@ -21,15 +21,20 @@ const layouts = {
 
 export default async function PostContentPage({ params }) {
   const { slug } = await params;
+  const postIndex = allPosts.findIndex((p) => p.url === slug);
+  if (postIndex === -1) return notFound();
+
   const post = allPosts.find((post) => post.url === slug);
-  if (!post) return notFound();
+
+  const prev = allPosts[postIndex + 1];
+  const next = allPosts[postIndex - 1];
 
   const mainContent = coreContent(post);
-  const Layout = layouts[defaultLayout];
+  const Layout = layouts[post.layout || defaultLayout];
 
   return (
     <>
-      <Layout content={mainContent}>
+      <Layout content={mainContent} next={next} prev={prev}>
         <MDXLayoutRenderer
           code={post.body.code}
           components={components}

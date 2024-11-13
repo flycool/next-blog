@@ -1,14 +1,16 @@
 import PageTitle from "@/components/PageTitle";
 import ScrollTopAndComment from "@/components/ScrollTopAndComment";
 import SectionContainer from "@/components/SectionContainer";
+import Tag from "@/components/Tag";
 import { Post } from "contentlayer/generated";
 import { CoreContent } from "pliny/utils/contentlayer";
 import { ReactNode } from "react";
+import Link from "@/components/Link";
 
 interface LayoutProps {
   content: CoreContent<Post>;
-  prev?: { path: string; title: string };
-  next?: { path: string; title: string };
+  prev?: { url: string; title: string };
+  next?: { url: string; title: string };
   children: ReactNode;
 }
 
@@ -18,8 +20,8 @@ export default function PostLayout({
   next,
   children,
 }: LayoutProps) {
-  const { date, title, url } = content;
-  const basePath = "/";
+  const { date, title, url, tags } = content;
+  const basePath = "posts";
 
   return (
     <SectionContainer>
@@ -50,7 +52,51 @@ export default function PostLayout({
               </div>
             </div>
             <footer>
-              <div></div>
+              <div>
+                {tags && (
+                  <div>
+                    <h2>Tags</h2>
+                    <div>
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {(next || prev) && (
+                  <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
+                    {prev && prev.url && (
+                      <div>
+                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          Previous Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/posts/${prev.url}`}>{prev.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                    {next && next.url && (
+                      <div>
+                        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                          Next Article
+                        </h2>
+                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                          <Link href={`/posts/${next.url}`}>{next.title}</Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+              <div>
+              <Link
+                  href={`/${basePath}`}
+                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  aria-label="Back to the blog"
+                >
+                  &larr; Back to the blog
+                </Link>
+              </div>
             </footer>
           </div>
         </div>

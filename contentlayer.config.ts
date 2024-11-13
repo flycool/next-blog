@@ -3,6 +3,7 @@ import {
   ComputedFields,
   makeSource,
 } from "contentlayer2/source-files";
+import { writeFileSync } from "fs";
 import path from "path";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 // Remark packages
@@ -22,8 +23,10 @@ import rehypeKatex from "rehype-katex";
 import rehypeCitation from "rehype-citation";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypePresetMinify from "rehype-preset-minify";
+import { slug } from "github-slugger";
 
 const root = process.cwd();
+const isProduction = process.env.NODE_ENV === "production";
 
 // heroicon mini link
 const icon = fromHtmlIsomorphic(
@@ -43,16 +46,10 @@ const Post = defineDocumentType(() => ({
   filePathPattern: `**/*.mdx`,
   contentType: "mdx",
   fields: {
-    title: {
-      type: "string",
-      description: "The title of the post",
-      required: true,
-    },
-    date: {
-      type: "string",
-      description: "The date of the post",
-      required: true,
-    },
+    title: { type: "string", required: true },
+    date: { type: "string", required: true },
+    tags: { type: "list", of: { type: "string" }, default: [] },
+    layout: { type: "string" },
   },
   computedFields: {
     url: {
@@ -93,4 +90,31 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
+  onSuccess: async (importData) => {
+    const { allPosts } = await importData();
+    createTagCount(allPosts);
+  },
 });
+
+function createTagCount(allPosts) {
+  const tagCount: Record<string, number> = {};
+  allPosts.forEach((file) => {
+    if (file.tags && !isProduction) {
+      file.tags.forEach((tag) => {
+        const formattedTag = slug(tag);
+        if (formattedTag in tagCount) {
+          tagCount[formattedTag] += 1;
+        } else {
+          tagCount[formattedTag] = 1;
+        }
+      });
+    }
+  });
+
+  try {
+    console.log(tagCount);
+    writeFileSync("./app/tag-data.json", JSON.stringify(tagCount));
+  } catch (e) {
+    console.log("error", e);
+  }
+}
