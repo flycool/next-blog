@@ -22,10 +22,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         <SectionContainer>
-          <Header/>
+          <Header />
           {/* <MainNavigation></MainNavigation> */}
           <main className="mb-auto">{children}</main>
           <div id="notifications"></div>

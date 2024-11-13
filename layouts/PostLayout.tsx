@@ -1,3 +1,4 @@
+import ScrollTopAndComment from "@/components/ScrollTopAndComment";
 import SectionContainer from "@/components/SectionContainer";
 import { Post } from "contentlayer/generated";
 import { CoreContent } from "pliny/utils/contentlayer";
@@ -21,6 +22,7 @@ export default function PostLayout({
 
   return (
     <SectionContainer>
+      <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
@@ -33,7 +35,7 @@ export default function PostLayout({
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-                    <li className="flex items-center space-x-2">max</li>
+                  <li className="flex items-center space-x-2">max</li>
                 </ul>
               </dd>
             </dl>
@@ -43,7 +45,7 @@ export default function PostLayout({
               </div>
             </div>
             <footer>
-                <div></div>
+              <div></div>
             </footer>
           </div>
         </div>
