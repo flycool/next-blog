@@ -111,5 +111,7 @@ function createTagCount(allPosts) {
     }
   });
 
-  writeFileSync("./app/tag-data.json", JSON.stringify(tagCount));
+  if (Object.keys(tagCount).length > 0) {
+    writeFileSync("./app/tag-data.json", JSON.stringify(tagCount));
+  }
 }
