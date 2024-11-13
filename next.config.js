@@ -23,6 +23,7 @@ const nextConfig = {
   // experimental: {
   //   appDir: true,
   // },
+  distDir: 'dist',
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if

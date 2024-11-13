@@ -111,10 +111,5 @@ function createTagCount(allPosts) {
     }
   });
 
-  try {
-    console.log(tagCount);
-    writeFileSync("./app/tag-data.json", JSON.stringify(tagCount));
-  } catch (e) {
-    console.log("error", e);
-  }
+  writeFileSync("./app/tag-data.json", JSON.stringify(tagCount));
 }
