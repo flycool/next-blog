@@ -5,7 +5,7 @@ const siteMetadata = {
   language: "en-us",
   theme: "system",
   locale: "en-US",
-  stickyNav: false,
+  stickyNav: true,
   description: ''
 };
 

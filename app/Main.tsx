@@ -17,18 +17,21 @@ export default function Home({ posts }) {
             const { url, date, title } = post;
             return (
               <li key={url} className="py-4">
-                <div className="space-y-4 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{date}</time>
-                    </dd>
-                  </dl>
-                  <div>
-                    <div>
-                      <div>
+                <article>
+                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{date}</time>
+                      </dd>
+                    </dl>
+                    <div className="space-y-5 xl:col-span-3">
+                      <div className="space-y-6">
                         <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                          <CustomLink href={`/posts/${url}`}>
+                          <CustomLink
+                            href={`/posts/${url}`}
+                            className="text-gray-900 dark:text-gray-100"
+                          >
                             {title}
                           </CustomLink>
                         </h2>
@@ -40,7 +43,7 @@ export default function Home({ posts }) {
                       </CustomLink>
                     </div> */}
                   </div>
-                </div>
+                </article>
               </li>
             );
           })}
@@ -48,7 +51,12 @@ export default function Home({ posts }) {
       </div>
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
-          <CustomLink href="/posts" className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">All Posts &rarr;</CustomLink>
+          <CustomLink
+            href="/posts"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+          >
+            All Posts &rarr;
+          </CustomLink>
         </div>
       )}
     </>

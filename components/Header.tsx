@@ -8,13 +8,13 @@ const Header = () => {
     "flex items-center w-full bg-white dark:bg-gray-950 justify-between py-10";
 
   if (siteMetadata.stickyNav) {
-    headerClass += " sticky top-0 z-50";
+    headerClass += " sticky top-0 z-50 opacity-95";
   }
   return (
     <header className={headerClass}>
       <Link href="/">
         <div className="flex items-center justify-between">
-          <div className="mr-3">{/* <Logo /> */}</div>
+          {/* <div className="mr-3"><Logo /></div> */}
           <div className="hidden h-6 text-2xl font-semibold sm:block">
             {siteMetadata.headerTitle}
           </div>
