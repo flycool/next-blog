@@ -1,3 +1,4 @@
+import PageTitle from "@/components/PageTitle";
 import ScrollTopAndComment from "@/components/ScrollTopAndComment";
 import SectionContainer from "@/components/SectionContainer";
 import { Post } from "contentlayer/generated";
@@ -27,7 +28,9 @@ export default function PostLayout({
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="pt-6 xl:pb-6">
             <div className="space-y-1 text-center">
-              <div>{title}</div>
+              <div>
+                <PageTitle>{title}</PageTitle>
+              </div>
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
@@ -39,8 +42,10 @@ export default function PostLayout({
                 </ul>
               </dd>
             </dl>
+
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
               <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
+                <p>{date}</p>
                 {children}
               </div>
             </div>
