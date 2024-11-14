@@ -2,6 +2,7 @@ import siteMetadata from "@/data/siteMetadata";
 import Link from "./Link";
 import Logo from "@/data/logo.svg";
 import headerNavLinks from "@/data/headerNavLinks";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   let headerClass =
@@ -34,7 +35,7 @@ const Header = () => {
               </Link>
             ))}
         </div>
-        
+        <ThemeSwitch />
       </div>
     </header>
   );

@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import MainNavigation from "../components/layout/MainNavigation";
 import SectionContainer from "components/SectionContainer";
 import Header from "components/Header";
+import { ThemeProviders } from "./providers/ThemeProviders";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -24,12 +25,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
-        <SectionContainer>
-          <Header />
-          {/* <MainNavigation></MainNavigation> */}
-          <main className="mb-auto">{children}</main>
-          <div id="notifications"></div>
-        </SectionContainer>
+        <ThemeProviders>
+          <SectionContainer>
+            <Header />
+            {/* <MainNavigation></MainNavigation> */}
+            <main className="mb-auto">{children}</main>
+            <div id="notifications"></div>
+          </SectionContainer>
+        </ThemeProviders>
       </body>
     </html>
   );
